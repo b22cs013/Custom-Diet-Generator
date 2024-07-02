@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nutrient Requirements</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    li {
+      margin-bottom: 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nutrient Requirements</h1>
+  <ul id="nutrientList"></ul>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const age = urlParams.get('age');
+    const height = urlParams.get('height');
+    const weight = urlParams.get('weight');
+    const sex = urlParams.get('sex');
+    const activityLevel = urlParams.get('activityLevel');
+
+    const nutrientList = document.getElementById('nutrientList');
+
+    // Calculate and display nutrient requirements based on personal information
+    nutrientList.innerHTML = `
+    <li>Protein Content: ${calculateProteinRequirement(age, sex, weight)} g</li>
+      <li>Energy Content: ${calculateEnergyRequirement(age, sex, weight, height, activityLevel)} kcal</li>
+      <li>Fiber Content: ${calculateFiberRequirement(age,sex)} g</li>
+      <li>Water Content: ${calculateWaterRequirement(age,sex)} L</li>
+      <li>Potassium Content: ${calculatePotassiumRequirement(age, sex)} mg</li>
+      <li>Sodium Content: ${calculateSodiumRequirement(age, sex)} mg</li>
+      <li>Chloride Content: ${calculateChlorideRequirement(age, sex)} mg</li>
+    `;
+
+    // Implement nutrient requirement calculation functions here
+    function calculateProteinRequirement(age,sex,weight) {
+      // Implement protein requirement calculation logic
+      let proteinrequirement;
+      if(sex=="male")
+      {
+      if(age>=1&&age<=3)
+      {
+        proteinrequirement=13;
+      }
+      else if(age>=4&&age<=8)
+      {
+        proteinrequirement=19;
+      }
+      else if(age>=9&&age<=13)
+      {
+        proteinrequirement=34;
+      }
+      else if(age>=14&&age<=18)
+      {
+        proteinrequirement=52;
+      }
+      else if(age>=19&&age<=30)
+      {
+        proteinrequirement=56;
+      }
+      else if(age>=30&&age<=50)
+      {
+        proteinrequirement=56;
+      }
+      else if(age>=51&&age<=70)
+      {
+        proteinrequirement=56;
+      }
+      else
+      {
+        proteinrequirement=56;
+      }
+    }
+    else
+    {
+      if(age>=9&&age<=13)
+      {
+        proteinrequirement=34;
+      }
+      else if(age>=14&&age<=18)
+      {
+        proteinrequirement=46;
+      }
+      else if(age>=19&&age<=30)
+      {
+        proteinrequirement=46;
+      }
+      else if(age>=31&&age<=50)
+      {
+        proteinrequirement=46;
+      }
+      else if(age>=51&&age<=70)
+      {
+        proteinrequirement=46;
+      }
+      else
+      {
+        proteinrequirement=46;
+      }
+    }
+    //console.log(proteinrequirement);
+      return proteinrequirement;
+    }
+
+    function calculateEnergyRequirement(age, sex, weight, height, activityLevel) {
+      let energyreq;
+      if(sex=="male")
+      {
+        if(age<3)
+        {
+          energyreq=(28.2*weight+height*8.59-371)*activityLevel;
+        }
+        else if(age>=3&&age<10)
+        {
+          energyreq=(15.1*weight+height*3.13-306)*activityLevel;
+        }
+        else if(age>=10&&age<18)
+        {
+          energyreq=(15.6*weight+height*2.66-299)*activityLevel;
+        } 
+        else if(age>=18&&age<30)
+        {
+          energyreq=(14.4*weight+height*3.13-113)*activityLevel;
+        }
+        else if(age>=30&&age<60)
+        {
+          energyreq=(11.4*weight+height*5.41-137)*activityLevel;
+        }
+        else
+        {
+          energyreq=(11.4*weight+height*5.41-256)*activityLevel;
+        }
+      }
+      else
+      {
+        if(age<3)
+        {
+          energyreq=(30.4*weight+height*7.03-287)*activityLevel;
+        }
+        else if(age>=3&&age<10)
+        {
+          energyreq=(15.9*weight+height*2.10-349)*activityLevel;
+        }
+        else if(age>=10&&age<18)
+        {
+          energyreq=(9.4*weight+height*2.49-462)*activityLevel;
+        } 
+        else if(age>=18&&age<30)
+        {
+          energyreq=(10.4*weight+height*6.15-282)*activityLevel;
+        }
+        else if(age>=30&&age<60)
+        {
+          energyreq=(8.18*weight+height*5.02-11.6)*activityLevel;
+        }
+        else
+        {
+          energyreq=(8.52*weight+height*4.21-10.7)*activityLevel;
+        }
+      }
+      return energyreq;
+    }
+
+    function calculateFiberRequirement(age,sex) {
+      // Implement fiber requirement calculation logic
+      let fiberrequirement;
+      if(sex=="male")
+      {
+      if(age>=1&&age<=3)
+      {
+        fiberrequirement=19;
+      }
+      else if(age>=4&&age<=8)
+      {
+        fiberrequirement=25;
+      }
+      else if(age>=9&&age<=13)
+      {
+        fiberrequirement=31;
+      }
+      else if(age>=14&&age<=18)
+      {
+        fiberrequirement=38;
+      }
+      else if(age>=19&&age<=30)
+      {
+        fiberrequirement=38;
+      }
+      else if(age>=30&&age<=50)
+      {
+        fiberrequirement=38;
+      }
+      else if(age>=51&&age<=70)
+      {
+        fiberrequirement=30;
+      }
+      else
+      {
+        fiberrequirement=30;
+      }
+    }
+    else
+    {
+      if(age>=9&&age<=13)
+      {
+        fiberrequirement=26;
+      }
+      else if(age>=14&&age<=18)
+      {
+        fiberrequirement=26;
+      }
+      else if(age>=19&&age<=30)
+      {
+        fiberrequirement=25;
+      }
+      else if(age>=31&&age<=50)
+      {
+        fiberrequirement=25;
+      }
+      else if(age>=51&&age<=70)
+      {
+        fiberrequirement=21;
+      }
+      else
+      {
+        fiberrequirement=41;
+      }
+    }
+    
+      return fiberrequirement;
+    }
+
+    function calculateWaterRequirement(age,sex) {
+      // Implement water requirement calculation logic
+      let waterrequirement;
+      if(sex=="male")
+      {
+      if(age>=1&&age<=3)
+      {
+        waterrequirement=1.3;
+      }
+      else if(age>=4&&age<=8)
+      {
+        waterrequirement=1.7;
+      }
+      else if(age>=9&&age<=13)
+      {
+        waterrequirement=2.4;
+      }
+      else if(age>=14&&age<=18)
+      {
+    waterrequirement=3.3;
+      }
+      else if(age>=19&&age<=30)
+      {
+    waterrequirement=3.7;
+      }
+      else if(age>=30&&age<=50)
+      {
+    waterrequirement=3.7;
+      }
+      else if(age>=51&&age<=70)
+      {
+    waterrequirement=3.7;
+      }
+      else
+      {
+        waterrequirement=3.7;
+      }
+    }
+    else
+    {
+      if(age>=9&&age<=13)
+      {
+        waterrequirement=2.1;
+      }
+      else if(age>=14&&age<=18)
+      {
+        waterrequirement=2.3;
+      }
+      else if(age>=19&&age<=30)
+      {
+        waterrequirement=2.7;
+      }
+      else if(age>=31&&age<=50)
+      {
+        waterrequirement=2.7;
+      }
+      else if(age>=51&&age<=70)
+      {
+        waterrequirement=2.7;
+      }
+      else
+      {
+        waterrequirement=2.7;
+      }
+    }
+    
+      return waterrequirement;
+    }
+
+    function calculatePotassiumRequirement(age, sex) {
+      // Implement potassium requirement calculation logic
+      let potassiumrequirement;
+      if(sex=="male")
+      {
+      if(age>=1&&age<=3)
+      {
+        potassiumrequirement=3;
+      }
+      else if(age>=4&&age<=8)
+      {
+        potassiumrequirement=3.8;
+      }
+      else if(age>=9&&age<=13)
+      {
+        potassiumrequirement=4.5;
+      }
+      else if(age>=14&&age<=18)
+      {
+        potassiumrequirement=4.7;
+      }
+      else if(age>=19&&age<=30)
+      {
+        potassiumrequirement=4.7;
+      }
+      else if(age>=30&&age<=50)
+      {
+        potassiumrequirement=4.7;
+      }
+      else if(age>=51&&age<=70)
+      {
+        potassiumrequirement=4.7;
+      }
+      else
+      {
+        potassiumrequirement=4.7;
+      }
+    }
+    else
+    {
+        if(age>=1&&age<=3)
+      {
+        potassiumrequirement=3;
+      }
+        else if(age>=9&&age<=13)
+      {
+        potassiumrequirement=4.5;
+      }
+      else if(age>=14&&age<=18)
+      {
+        potassiumrequirement=4.7;
+      }
+      else if(age>=19&&age<=30)
+      {
+        potassiumrequirement=4.7;
+      }
+      else if(age>=31&&age<=50)
+      {
+        potassiumrequirement=4.7;
+      }
+      else if(age>=51&&age<=70)
+      {
+        potassiumrequirement=4.7;
+      }
+      else
+      {
+        potassiumrequirement=4.7;
+      }
+    }
+    
+      return potassiumrequirement;
+    }
+
+    function calculateSodiumRequirement(age, sex) {
+      let sodiumrequirement;
+  if(sex=="male")
+      {
+      if(age>=1&&age<=3)
+      {
+        sodiumrequirement=1;
+      }
+      else if(age>=4&&age<=8)
+      {
+        sodiumrequirement=1.2;
+      }
+      else if(age>=9&&age<=13)
+      {
+        sodiumrequirement=1.5;
+      }
+      else if(age>=14&&age<=18)
+      {
+        sodiumrequirement=1.5;
+      }
+      else if(age>=19&&age<=30)
+      {
+        sodiumrequirement=1.5;
+      }
+      else if(age>=30&&age<=50)
+      {
+        sodiumrequirement=1.5;
+      }
+      else if(age>=51&&age<=70)
+      {
+        sodiumrequirement=1.3;
+      }
+      else
+      {
+        sodiumrequirement=1.2;
+      }
+    }
+    else
+    {
+      if(age>=9&&age<=13)
+      {
+        sodiumrequirement=1.5;
+      }
+      else if(age>=14&&age<=18)
+      {
+        sodiumrequirement=1.5;
+      }
+      else if(age>=19&&age<=30)
+      {
+        sodiumrequirement=1.5;
+      }
+      else if(age>=31&&age<=50)
+      {
+        sodiumrequirement=1.5;
+      }
+      else if(age>=51&&age<=70)
+      {
+        sodiumrequirement=1.3;
+      }
+      else
+      {
+        sodiumrequirement=1.2;
+      }
+    }
+    
+      return sodiumrequirement;
+    }
+
+    function calculateChlorideRequirement(age, sex) {
+      // Implement chloride requirement calculation logic
+      let chloriderequirement;
+      if(sex=="male")
+      {
+      if(age>=1&&age<=3)
+      {
+        chloriderequirement=1.5;
+      }
+      else if(age>=4&&age<=8)
+      {
+        chloriderequirement=1.9;
+      }
+      else if(age>=9&&age<=13)
+      {
+        chloriderequirement=2.3;
+      }
+      else if(age>=14&&age<=18)
+      {
+        chloriderequirement=2.3;
+      }
+      else if(age>=19&&age<=30)
+      {
+        chloriderequirement=2.3;
+      }
+      else if(age>=30&&age<=50)
+      {
+        chloriderequirement=2.3;
+      }
+      else if(age>=51&&age<=70)
+      {
+        chloriderequirement=2.0;
+      }
+      else
+      {
+        chloriderequirement=1.8;
+      }
+    }
+    else
+    {
+      if(age>=9&&age<=13)
+      {
+        chloriderequirement=2.3;
+      }
+      else if(age>=14&&age<=18)
+      {
+        chloriderequirement=2.3;
+      }
+      else if(age>=19&&age<=30)
+      {
+        chloriderequirement=2.3;
+      }
+      else if(age>=31&&age<=50)
+      {
+        chloriderequirement=2.3;
+      }
+      else if(age>=51&&age<=70)
+      {
+        chloriderequirement=2.0;
+      }
+      else
+      {
+        chloriderequirement=1.8;
+      }
+    }
+    
+      return chloriderequirement;
+    }
+  </script>
+</body>
+</html>
